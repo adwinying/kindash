@@ -1,7 +1,9 @@
 import nodePath from "node:path";
+import { cron } from "@elysiajs/cron";
 import { html } from "@elysiajs/html";
 import { HoltLogger } from "@tlscipher/holt";
 import { Elysia } from "elysia";
+import { updateData } from "./data";
 
 type BaseHTMLProps = {
   children: JSX.Element;
@@ -245,6 +247,16 @@ const Dashboard = ({ data }: DashboardProps) => {
 
 const app = new Elysia()
   .use(html())
+  .use(
+    cron({
+      name: "updateDataJson",
+      pattern: "9,19,29,39,49,59 * * * *",
+      run: async () => {
+        console.log(`${new Date().toISOString()} | CRON updateDataJson`);
+        await updateData();
+      },
+    }),
+  )
   .use(new HoltLogger().getLogger())
   .get("/", async () => {
     const path = nodePath.join(import.meta.dir, "data.json");
