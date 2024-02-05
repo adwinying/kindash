@@ -5,6 +5,7 @@ import { DashboardPage } from "./dashboard";
 export const generateImage = async () => {
   const html = await DashboardPage();
   const browser = await puppeteer.launch({
+    args: ["--no-sandbox"],
     executablePath: process.env.CHROME_BIN,
   });
   console.log("Browser launched");

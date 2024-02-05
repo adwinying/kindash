@@ -1,0 +1,7 @@
+*
+!flake.nix
+!flake.lock
+!package.json
+!bun.lockb
+!tsconfig.json
+!src/*
