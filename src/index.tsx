@@ -1,3 +1,4 @@
+import nodePath from "node:path";
 import { cron } from "@elysiajs/cron";
 import { html } from "@elysiajs/html";
 import { HoltLogger } from "@tlscipher/holt";
@@ -21,6 +22,7 @@ const app = new Elysia()
   )
   .use(new HoltLogger().getLogger())
   .get("/", async () => <DashboardPage />)
+  .get("/dash.png", () => Bun.file(nodePath.join(import.meta.dir, "dash.png")))
   .listen(3000);
 
 await updateData();
