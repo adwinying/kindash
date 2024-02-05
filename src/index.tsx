@@ -23,6 +23,8 @@ const app = new Elysia()
   .get("/", async () => <DashboardPage />)
   .listen(3000);
 
+await updateData();
+await generateImage();
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
