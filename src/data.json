@@ -1,0 +1,49 @@
+{
+  "timestamp": "2023-08-01 12:00:00",
+  "indoor": {
+    "temp": 69,
+    "humidity": 50,
+    "co2": 400,
+    "dewPoint": 50
+  },
+  "outdoor": {
+    "icon": "https://s.yimg.jp/images/weather/general/next/pinpoint/size80/52_day.png",
+    "currentTemp": 88,
+    "minTemp": 85,
+    "maxTemp": 90,
+    "humidity": 30,
+    "windSpeed": 1,
+    "umbrellaMeter": 50,
+    "clothingMeter": 30,
+    "forecasts": [
+      {
+        "icon": "https://s.yimg.jp/images/weather/general/next/pinpoint/size80/30_night.png",
+        "time": "12:00",
+        "temp": 90,
+        "humidity": 30,
+        "windSpeed": 1
+      },
+      {
+        "icon": "https://s.yimg.jp/images/weather/general/next/pinpoint/size80/30_day.png",
+        "time": "15:00",
+        "temp": 88,
+        "humidity": 30,
+        "windSpeed": 2
+      },
+      {
+        "icon": "https://s.yimg.jp/images/weather/general/next/pinpoint/size80/20_night.png",
+        "time": "18:00",
+        "temp": 87,
+        "humidity": 35,
+        "windSpeed": 0.5
+      },
+      {
+        "icon": "https://s.yimg.jp/images/weather/general/next/size90/201_day.png",
+        "time": "21:00",
+        "temp": 85,
+        "humidity": 40,
+        "windSpeed": 0
+      }
+    ]
+  }
+}
