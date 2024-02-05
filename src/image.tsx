@@ -13,6 +13,7 @@ export const generateImage = async () => {
   const page = await browser.newPage();
   await page.setViewport({ width: 758, height: 1024 });
   await page.setContent(html, { timeout: 30000, waitUntil: "networkidle0" });
+  await page.evaluateHandle("document.fonts.ready");
   console.log("Page loaded");
 
   const imagePath = nodePath.join(import.meta.dir, "dash.png");
