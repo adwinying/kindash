@@ -1,5 +1,6 @@
 import nodePath from "node:path";
 import * as cheerio from "cheerio";
+import { DashboardData } from "./dashboard";
 
 const getTimestamp = () => {
   const timestamp = new Date();
@@ -83,13 +84,14 @@ const getOutdoorData = async () => {
       .text()
       .trim()
       .replace(/[^\d]/g, "")}:00`;
-    const icon = $target
-      .find(
-        `tr:nth-child(${rowIndices.icon + 1}) td:nth-child(${
-          colIndex + 1
-        }) img`,
-      )
-      .attr("src");
+    const icon =
+      $target
+        .find(
+          `tr:nth-child(${rowIndices.icon + 1}) td:nth-child(${
+            colIndex + 1
+          }) img`,
+        )
+        .attr("src") ?? "";
     const temp = +$target
       .find(
         `tr:nth-child(${rowIndices.temp + 1}) td:nth-child(${colIndex + 1})`,
@@ -156,7 +158,7 @@ export const updateData = async () => {
     timestamp: getTimestamp(),
     indoor: await getIndoorData(),
     outdoor: await getOutdoorData(),
-  };
+  } satisfies DashboardData;
 
   const path = nodePath.join(import.meta.dir, "data.json");
   await Bun.write(path, JSON.stringify(data, null, 2));

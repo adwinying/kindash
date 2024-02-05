@@ -4,7 +4,7 @@
   "scripts": {
     "test": "bun test",
     "check": "biome check src/*",
-    "format": "biome check --apply src/*",
+    "format": "biome check --apply-unsafe src/*",
     "dev": "bun run --watch src/index.tsx",
     "build": "bun build src/index.tsx",
     "start": "NODE_ENV=production bun src/index.tsx"
@@ -14,7 +14,8 @@
     "@elysiajs/html": "^0.8.0",
     "@tlscipher/holt": "^1.1.3",
     "cheerio": "^1.0.0-rc.12",
-    "elysia": "latest"
+    "elysia": "latest",
+    "puppeteer-core": "^21.11.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",

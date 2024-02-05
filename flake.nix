@@ -13,10 +13,13 @@
       devShell = with pkgs; mkShell {
         buildInputs = [
           bun
+          ungoogled-chromium
         ];
 
         shellHook = ''
+          export CHROME_BIN=${pkgs.ungoogled-chromium}/bin/chromium
           echo "bun: v`${pkgs.bun}/bin/bun --version`"
+          echo "`${pkgs.ungoogled-chromium}/bin/chromium --version`"
         '';
       };
     });
