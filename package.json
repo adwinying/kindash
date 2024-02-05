@@ -3,8 +3,8 @@
   "version": "1.0.50",
   "scripts": {
     "test": "bun test",
-    "check": "biome check src/*",
-    "format": "biome check --apply-unsafe src/*",
+    "check": "biome check src/*.tsx",
+    "format": "biome check --apply-unsafe src/*.tsx",
     "dev": "bun run --watch src/index.tsx",
     "build": "bun build src/index.tsx",
     "start": "NODE_ENV=production bun src/index.tsx"
