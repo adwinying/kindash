@@ -16,10 +16,12 @@
           ungoogled-chromium
           fontconfig
           noto-fonts-cjk-serif
+          imagemagick
         ];
 
         shellHook = ''
           export CHROME_BIN=${pkgs.ungoogled-chromium}/bin/chromium
+          export CONVERT_BIN=${pkgs.imagemagick}/bin/convert
           export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
           echo "bun: v`${pkgs.bun}/bin/bun --version`"
           echo "`${pkgs.ungoogled-chromium}/bin/chromium --version`"

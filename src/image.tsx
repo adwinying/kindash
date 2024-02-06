@@ -1,4 +1,5 @@
 import nodePath from "node:path";
+import { $ } from "bun";
 import puppeteer from "puppeteer-core";
 import { DashboardPage } from "./dashboard";
 
@@ -18,6 +19,7 @@ export const generateImage = async () => {
 
   const imagePath = nodePath.join(import.meta.dir, "dash.png");
   await page.screenshot({ path: imagePath, type: "png" });
+  await $`$CONVERT_BIN ${imagePath} -grayscale average ${imagePath}`;
   console.log("Image generated");
 
   await browser.close();
