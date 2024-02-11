@@ -28,25 +28,28 @@ type IndoorData = {
   };
 };
 const getIndoorData = async () => {
-  let json: IndoorData;
+  const result = {
+    temp: 88.8,
+    humidity: 88.8,
+    co2: 888,
+    dewPoint: 8.8,
+  };
+
   try {
     console.log("Fetching indoor data");
     const res = await fetch("http://192.168.5.5/cm?cmnd=status%2010");
-    json = await res.json();
+    const json = (await res.json()) as IndoorData;
     console.log("Indoor data fetched");
+
+    result.temp = json.StatusSNS.SCD40.Temperature;
+    result.humidity = json.StatusSNS.SCD40.Humidity;
+    result.co2 = json.StatusSNS.SCD40.CarbonDioxide;
+    result.dewPoint = json.StatusSNS.SCD40.DewPoint;
   } catch (e) {
     console.log("Failed to fetch indoor data; reverting to default values");
-    json = JSON.parse(
-      `{"StatusSNS":{"Time":"1972-01-14T16:08:33","SCD40":{"CarbonDioxide":888,"eCO2":888,"Temperature":88.8,"Humidity":88.8,"DewPoint":8.8},"TempUnit":"C"}}`,
-    );
   }
 
-  return {
-    temp: json.StatusSNS.SCD40.Temperature,
-    humidity: json.StatusSNS.SCD40.Humidity,
-    co2: json.StatusSNS.SCD40.CarbonDioxide,
-    dewPoint: json.StatusSNS.SCD40.DewPoint,
-  };
+  return result;
 };
 
 const getOutdoorData = async () => {
