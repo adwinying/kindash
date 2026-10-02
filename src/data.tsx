@@ -54,7 +54,7 @@ const getIndoorData = async () => {
 
 const getOutdoorData = async () => {
   const res = await fetch(
-    "https://weather.yahoo.co.jp/weather/jp/13/4410/13120.html",
+    "https://weather.yahoo.co.jp/weather/jp/13/4410/13107.html",
   );
   const html = await res.text();
   const $ = cheerio.load(html);
