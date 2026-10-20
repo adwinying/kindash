@@ -5,22 +5,25 @@ import { DashboardPage } from "./dashboard";
 
 export const generateImage = async () => {
   const html = await DashboardPage();
+  const imagePath = nodePath.join(import.meta.dir, "dash.png");
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
     executablePath: process.env.CHROME_BIN,
   });
   console.log("Browser launched");
 
-  const page = await browser.newPage();
-  await page.setViewport({ width: 758, height: 1024 });
-  await page.setContent(html, { timeout: 30000, waitUntil: "networkidle0" });
-  await page.evaluateHandle("document.fonts.ready");
-  console.log("Page loaded");
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 758, height: 1024 });
+    await page.setContent(html, { timeout: 30000, waitUntil: "networkidle0" });
+    await page.evaluateHandle("document.fonts.ready");
+    console.log("Page loaded");
 
-  const imagePath = nodePath.join(import.meta.dir, "dash.png");
-  await page.screenshot({ path: imagePath, type: "png" });
+    await page.screenshot({ path: imagePath, type: "png" });
+  } finally {
+    await browser.close();
+  }
+
   await $`$CONVERT_BIN ${imagePath} -grayscale average ${imagePath}`;
   console.log("Image generated");
-
-  await browser.close();
 };
